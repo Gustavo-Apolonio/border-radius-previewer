@@ -1,0 +1,30 @@
+.slider {
+  &-h {
+    width: 49%;
+  }
+
+  &-v {
+    height: 49%;
+  }
+}
+
+.box {
+  height: 100%;
+  width: 65%;
+
+  background-image: linear-gradient(
+    to right bottom,
+    #f44336,
+    #ee204e,
+    #e10065,
+    #cd007b,
+    #b0008e,
+    #983bb4,
+    #6f59d3,
+    #0071e8,
+    #009cfc,
+    #00beef,
+    #00d9cf,
+    #69f0ae
+  );
+}

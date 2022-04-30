@@ -1,27 +1,32 @@
-# BorderRadiusPreviewer
+# Border-radius Previewer
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.3.
+**Tier:** 1-Beginner
 
-## Development server
+The border-radius property can have multiple values changed. Preview how the shape looks while changing these values.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## User Stories
 
-## Code scaffolding
+- [x] User can see a box which has a `border-radius` property applied to it
+- [x] User can change the 4 `border-radius` values that are applied to the box (top-left, top-right, bottom-left, bottom-right)
+- [x] User can copy the resulting CSS to the clipboard
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Bonus features
 
-## Build
+- [x] User can change all 8 possible values of the border-radius in order to create a complex shape
+- [X] User can click a button that will generate a random complex shape
+- [X] User can click a button that will reset the a random complex shape
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Dev feature
 
-## Running unit tests
+- [X] Use redux to store border radius
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Useful links and resources
 
-## Running end-to-end tests
+- [CSS3 Borders](https://www.w3schools.com/css/css3_borders.asp)
+- [Copy to Clipboard](https://www.w3schools.com/howto/howto_js_copy_clipboard.asp)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Example projects
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- [9elements Fancy Border Radius](https://9elements.github.io/fancy-border-radius/)
+- [Border Radius](https://border-radius.com/)
+- [CSS Gradient Border](https://codepen.io/thebabydino/pen/zbqPVd)

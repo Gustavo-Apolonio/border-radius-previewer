@@ -1,0 +1,121 @@
+<div
+  class="container-fluid p-0 d-flex flex-column align-items-center justify-content-center h-100"
+>
+  <div class="container-fluid w-100 h-100">
+    <div class="row h-25">
+      <div class="col-4"></div>
+      <div class="col-4 d-flex justify-content-between align-items-end">
+        <mat-slider
+          class="slider slider-h"
+          [displayWith]="displayWith"
+          max="100"
+          min="0"
+          step="1"
+          [value]="borderValues[0]"
+          (input)="onChange(0, $event.value)"
+          thumbLabel
+        ></mat-slider>
+        <mat-slider
+          class="slider slider-h"
+          [displayWith]="displayWith"
+          max="100"
+          min="0"
+          step="1"
+          [value]="borderValues[1]"
+          (input)="onChange(1, $event.value)"
+          thumbLabel
+          invert
+        ></mat-slider>
+      </div>
+      <div class="col-4"></div>
+    </div>
+    <div class="row h-50">
+      <div class="col"></div>
+      <div
+        class="col p-0 d-flex flex-column justify-content-between align-items-end"
+      >
+        <mat-slider
+          class="slider slider-v"
+          [displayWith]="displayWith"
+          max="100"
+          min="0"
+          step="1"
+          [value]="borderValues[4]"
+          (input)="onChange(4, $event.value)"
+          thumbLabel
+          vertical
+          invert
+        ></mat-slider>
+        <mat-slider
+          class="slider slider-v"
+          [displayWith]="displayWith"
+          max="100"
+          min="0"
+          step="1"
+          [value]="borderValues[7]"
+          (input)="onChange(7, $event.value)"
+          thumbLabel
+          vertical
+        ></mat-slider>
+      </div>
+      <div class="col-4 d-flex justify-content-center align-items-center">
+        <div class="box" [style]="borderRadius"></div>
+      </div>
+      <div
+        class="col p-0 d-flex flex-column justify-content-between align-items-start"
+      >
+        <mat-slider
+          class="slider slider-v"
+          [displayWith]="displayWith"
+          max="100"
+          min="0"
+          step="1"
+          [value]="borderValues[5]"
+          (input)="onChange(5, $event.value)"
+          thumbLabel
+          vertical
+          invert
+        ></mat-slider>
+        <mat-slider
+          class="slider slider-v"
+          [displayWith]="displayWith"
+          max="100"
+          min="0"
+          step="1"
+          [value]="borderValues[6]"
+          (input)="onChange(6, $event.value)"
+          thumbLabel
+          vertical
+        ></mat-slider>
+      </div>
+      <div class="col"></div>
+    </div>
+    <div class="row h-25">
+      <div class="col-4"></div>
+      <div class="col-4 d-flex justify-content-between align-items-start">
+        <mat-slider
+          class="slider slider-h"
+          [displayWith]="displayWith"
+          max="100"
+          min="0"
+          step="1"
+          [value]="borderValues[3]"
+          (input)="onChange(3, $event.value)"
+          thumbLabel
+        ></mat-slider>
+        <mat-slider
+          class="slider slider-h"
+          [displayWith]="displayWith"
+          max="100"
+          min="0"
+          step="1"
+          [value]="borderValues[2]"
+          (input)="onChange(2, $event.value)"
+          thumbLabel
+          invert
+        ></mat-slider>
+      </div>
+      <div class="col-4"></div>
+    </div>
+  </div>
+</div>

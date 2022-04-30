@@ -1,0 +1,30 @@
+<nav class="navbar navbar-dark bg-dark text-light">
+  <div class="container-fluid d-flex justify-content-start">
+    <span class="navbar-brand m-0 me-2 h2"
+      ><abbr title="Border Radius Previewer Result">BRP Result</abbr></span
+    >
+    <div class="ms-2 d-flex">
+      <p class="mb-0 me-1">
+        border-radius:
+        <span class="text-warning">{{ borderValues[0] }}% </span>
+        <span class="text-warning">{{ borderValues[1] }}% </span>
+        <span class="text-warning">{{ borderValues[2] }}% </span>
+        <span class="text-warning">{{ borderValues[3] }}% </span> /
+        <span class="text-warning">{{ borderValues[4] }}% </span>
+        <span class="text-warning">{{ borderValues[5] }}% </span>
+        <span class="text-warning">{{ borderValues[6] }}% </span>
+        <span class="text-warning">{{ borderValues[7] }}% </span>
+        <span class="text-danger">!important</span>;
+      </p>
+    </div>
+    <button
+      mat-icon-button
+      [color]="button_color"
+      aria-label="Copy Border Radius CSS"
+      [cdkCopyToClipboard]="borderRadius"
+      (click)="onClick()"
+    >
+      <mat-icon>{{ button }}</mat-icon>
+    </button>
+  </div>
+</nav>
