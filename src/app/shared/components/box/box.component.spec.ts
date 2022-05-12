@@ -1,10 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideMockStore } from '@ngrx/store/testing';
+import { of } from 'rxjs';
 import { MockBorder } from '../../mock/border.mock';
 
 import { BoxComponent } from './box.component';
 
-fdescribe('BoxComponent', () => {
+describe('BoxComponent', () => {
   let component: BoxComponent;
   let fixture: ComponentFixture<BoxComponent>;
 
@@ -36,24 +37,65 @@ fdescribe('BoxComponent', () => {
     expect(response).toBe(expectation);
   });
 
-  // describe('Testing ngOnInit', () => { })
+  describe('Testing ngOnInit', () => {
+    const mockBorder$ = { ...MockBorder };
 
-  describe('Testing onChange', () => {
-    it('should set borderValues to updated borderValues when value is truthy', () => {
-      const index = 0;
-      const value = 1;
+    it('should call borderFacade.getBorder method', () => {
+      // @ts-ignore
+      const spy = spyOn(component.borderFacade, 'getBorder').and.returnValue(
+        of(mockBorder$)
+      );
 
-      component.borderValues = [...MockBorder.values];
+      component.ngOnInit();
+      fixture.whenStable();
 
-      let updatedBorderValues = [...component.borderValues];
-      updatedBorderValues[index] = value;
-
-      component.onChange(0, 1);
-
-      expect(component.borderValues).toEqual(updatedBorderValues);
+      expect(spy).toHaveBeenCalled();
     });
 
-    it('should call borderFacade.setValues, borderFacade.setOriginals and borderFacade.setRadius/borderRadiusService.getBorderRadiusString with borderValues', () => {
+    it('should set borderValues & borderRadius', () => {
+      // @ts-ignore
+      spyOn(component.borderFacade, 'getBorder').and.returnValue(
+        of(mockBorder$)
+      );
+
+      component.ngOnInit();
+      fixture.whenStable();
+
+      expect(component.borderValues).toEqual(mockBorder$.values);
+      expect(component.borderRadius).toEqual(mockBorder$.radius);
+    });
+  });
+
+  describe('Testing onChange', () => {
+    const index = 3;
+    const value = 50;
+
+    let expectation: number[];
+
+    beforeEach(() => {
+      component.borderValues = [...MockBorder.values];
+
+      let values = [...component.borderValues];
+      values[index] = value;
+
+      expectation = [...values];
+    });
+
+    it('should set borderValues with value', () => {
+      component.onChange(index, value);
+
+      expect(component.borderValues).toEqual(expectation);
+    });
+
+    it('should set borderValues with 0 when value is falsy', () => {
+      expectation[index] = 0;
+
+      component.onChange(index, null);
+
+      expect(component.borderValues).toEqual(expectation);
+    });
+
+    it('should call borderFacade.setValues, borderFacade.setOriginals, borderFacade.setRadius & borderRadiusService.getBorderRadiusString', () => {
       const spyOnSetValues = spyOn(
         // @ts-ignore
         component.borderFacade,
@@ -69,13 +111,17 @@ fdescribe('BoxComponent', () => {
         component.borderFacade,
         'setRadius'
       ).and.stub();
-      const spyOnGetRadius = spyOn(
-        // @ts-ignore
+      const spyOnGetBorderRadiusString = spyOn(
         component.borderRadiusService,
         'getBorderRadiusString'
       ).and.stub();
 
-      // continue from here
+      component.onChange(index, value);
+
+      expect(spyOnSetValues).toHaveBeenCalled();
+      expect(spyOnSetOriginals).toHaveBeenCalled();
+      expect(spyOnSetRadius).toHaveBeenCalled();
+      expect(spyOnGetBorderRadiusString).toHaveBeenCalled();
     });
   });
 });

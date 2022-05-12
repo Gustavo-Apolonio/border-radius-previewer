@@ -3,16 +3,14 @@ import { MockBorder } from 'src/app/shared/mock/border.mock';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import {
   MatSnackBarModule,
-  MatSnackBarRef,
   _SnackBarContainer,
 } from '@angular/material/snack-bar';
 
 import { FooterComponent } from './footer.component';
 import { provideMockStore } from '@ngrx/store/testing';
 import { of } from 'rxjs';
-import { OverlayRef } from '@angular/cdk/overlay';
 
-fdescribe('FooterComponent', () => {
+describe('FooterComponent', () => {
   let component: FooterComponent;
   let fixture: ComponentFixture<FooterComponent>;
 
@@ -51,7 +49,7 @@ fdescribe('FooterComponent', () => {
       expect(spy).toHaveBeenCalled();
     });
 
-    it('should set borderValues, borderRadius & original', () => {
+    it('should set borderValues & borderRadius', () => {
       // @ts-ignore
       spyOn(component.borderFacade, 'getBorder').and.returnValue(
         of(mockBorder$)
