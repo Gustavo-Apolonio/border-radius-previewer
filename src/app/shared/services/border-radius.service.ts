@@ -4,8 +4,6 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class BorderRadiusService {
-  constructor() {}
-
   getBorderRadiusString(values: number[] = [0, 0, 0, 0, 0, 0, 0, 0]) {
     return `border-radius: ${values[0]}% ${values[1]}% ${values[2]}% ${values[3]}% / ${values[4]}% ${values[5]}% ${values[6]}% ${values[7]}% !important;`;
   }
@@ -16,7 +14,7 @@ export class BorderRadiusService {
     if (!values) return [0, 0, 0, 0, 0, 0, 0, 0];
 
     const valuesCopy = [...values];
-    values.map((value, index) => {
+    values.forEach((_value: number, index: number) => {
       valuesCopy[index] = this.randomInt(1, 100);
     });
 
