@@ -33,6 +33,11 @@ export class FooterComponent implements OnInit {
     });
   }
 
+  resetButtonColor(): void {
+    this.button_color = 'primary';
+    this.button = 'filter_none';
+  }
+
   onClick() {
     this.button_color = 'accent';
     this.button = 'check';
@@ -40,16 +45,10 @@ export class FooterComponent implements OnInit {
       this._snackBar.open('Copied to clipboard!');
 
     if (!this.timeOut) {
-      this.timeOut = window.setTimeout(() => {
-        this.button_color = 'primary';
-        this.button = 'filter_none';
-      }, 1500);
+      this.timeOut = window.setTimeout(this.resetButtonColor, 1500);
     } else {
       clearTimeout(this.timeOut);
-      this.timeOut = window.setTimeout(() => {
-        this.button_color = 'primary';
-        this.button = 'filter_none';
-      }, 1500);
+      this.timeOut = window.setTimeout(this.resetButtonColor, 1500);
     }
   }
 }
