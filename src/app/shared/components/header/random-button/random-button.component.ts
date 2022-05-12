@@ -27,7 +27,7 @@ export class RandomButtonComponent implements OnInit {
   ngOnInit(): void {
     this.border$ = this.borderFacade.getBorder();
 
-    this.border$.subscribe((response?) => {
+    this.border$.subscribe((response) => {
       this.borderValues = response.values;
       this.borderRadius = response.radius;
       this.originalValues = response.originalValues;

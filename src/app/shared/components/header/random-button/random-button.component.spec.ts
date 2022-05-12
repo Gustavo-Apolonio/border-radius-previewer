@@ -4,6 +4,7 @@ import { RandomButtonComponent } from './random-button.component';
 
 import { provideMockStore } from '@ngrx/store/testing';
 import { MockBorder } from 'src/app/shared/mock/border.mock';
+import { of } from 'rxjs';
 
 describe('RandomButtonComponent', () => {
   let component: RandomButtonComponent;
@@ -28,7 +29,51 @@ describe('RandomButtonComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  // describe('Testing ngOnInit', () => { })
+  describe('Testing ngOnInit', () => {
+    const mockBorder$ = { ...MockBorder };
+
+    it('should call borderFacade.getBorder method', () => {
+      // @ts-ignore
+      const spy = spyOn(component.borderFacade, 'getBorder').and.returnValue(
+        of(mockBorder$)
+      );
+
+      component.ngOnInit();
+      fixture.whenStable();
+
+      expect(spy).toHaveBeenCalled();
+    });
+
+    it('should set borderValues, borderRadius & original', () => {
+      // @ts-ignore
+      spyOn(component.borderFacade, 'getBorder').and.returnValue(
+        of(mockBorder$)
+      );
+
+      component.ngOnInit();
+      fixture.whenStable();
+
+      expect(component.borderValues).toEqual(mockBorder$.values);
+      expect(component.borderRadius).toEqual(mockBorder$.radius);
+      expect(component.originalValues).toEqual(mockBorder$.originalValues);
+    });
+
+    it('should set displayValues to a differente value and call borderRadiusService.generateRandomRadiusValues method', () => {
+      const displayValues = [...component.displayValues];
+
+      const spy = spyOn(
+        // @ts-ignore
+        component.borderRadiusService,
+        'generateRandomRadiusValues'
+      ).and.callThrough();
+
+      component.ngOnInit();
+      fixture.whenStable();
+
+      expect(component.displayValues).not.toBe(displayValues);
+      expect(spy).toHaveBeenCalled();
+    });
+  });
 
   describe('Testing onMouseOver', () => {
     let displayValues: number[] = [];
