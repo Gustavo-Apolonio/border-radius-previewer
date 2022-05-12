@@ -29,7 +29,7 @@ describe('ClearButtonComponent', () => {
 
   it('should call clear method onClick', () => {
     // @ts-ignore
-    const spy = spyOn(component.borderFacade, 'clear').and.stub();
+    const spy = spyOn(component.borderFacade, 'clear').and.callThrough();
 
     component.onClick();
 
